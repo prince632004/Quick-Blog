@@ -1,3 +1,13 @@
+// ============================================================
+// NewsLetter.jsx - Email Newsletter Subscription Component
+// ============================================================
+// Renders a newsletter signup section on the homepage.
+// Currently a UI-only component - form submission is not yet
+// connected to a backend endpoint. Future improvement would
+// involve sending the email to a POST /api/newsletter endpoint
+// and storing subscribers in the database.
+// ============================================================
+
 import React from "react";
 
 const NewsLetter = () => {
@@ -7,6 +17,7 @@ const NewsLetter = () => {
       <p className="md:text-lg text-gray-500/70 pb-8">
         Subscribe to get the latest blog, new tech , and exclusive news.
       </p>
+      {/* Email subscription form (UI only - backend not yet connected) */}
       <form className="flex items-center justify-between max-w-2xl w-full md:h-13 h-12">
         <input
           type="text"

@@ -1,6 +1,22 @@
+// ============================================================
+// Blog.jsx - Public Blog Post Detail Page
+// ============================================================
+// Renders the full detail view of a single blog post.
+// Fetches the blog content and its approved comments on mount.
+// Also provides a comment submission form for readers.
+// Social share buttons are displayed at the bottom of the post.
+//
+// Data fetched:
+//   - GET /api/blog/:id           -> Single blog post content
+//   - GET /api/blog/:id/comments  -> All approved comments for this blog
+//   - POST /api/blog/add-comment  -> Submit a new reader comment
+//
+// Shows a full-screen <Loader /> spinner while blog data is loading.
+// ============================================================
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { assets, blog_data, comments_data } from "../assets/assets";
+import { assets } from "../assets/assets";
 import Navbar from "../components/Navbar";
 import Moment from "moment";
 import Footer from "../components/Footer";
@@ -29,14 +45,14 @@ const Blog = () => {
 
   const fetchComments = async () => {
     try {
-      const { data } = await axios.post("/api/blog/comments", { blogId: id });
+      const { data } = await axios.get(`/api/blog/${id}/comments`);
       if (data.success) {
         setComments(data.comments);
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 

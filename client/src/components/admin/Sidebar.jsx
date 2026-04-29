@@ -1,3 +1,14 @@
+// ============================================================
+// Sidebar.jsx - Admin Panel Navigation Sidebar
+// ============================================================
+// Renders the left-side navigation menu for the admin panel.
+// Uses NavLink from React Router which automatically applies an
+// "active" class when the current URL matches the link's path.
+// The active state is styled with a primary color background and
+// a right-side border accent to visually highlight the current page.
+// On small screens, only the icon is shown; labels appear on md+.
+// ============================================================
+
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets";
@@ -5,6 +16,7 @@ import { assets } from "../../assets/assets";
 const Sidebar = () => {
   return (
     <div className="flex flex-col border-r border-gray-200 min-h-full pt-6">
+      {/* Dashboard navigation link - 'end' prop prevents matching all /admin/* routes */}
       <NavLink
         end={true}
         to="/admin"
@@ -16,6 +28,7 @@ const Sidebar = () => {
         <p className="hidden md:inline-block">Dashboard</p>
       </NavLink>
 
+      {/* Add Blog navigation link */}
       <NavLink
         to="/admin/addBlog"
         className={({ isActive }) =>
@@ -26,6 +39,7 @@ const Sidebar = () => {
         <p className="hidden md:inline-block">Add blogs</p>
       </NavLink>
 
+      {/* Blog List navigation link */}
       <NavLink
         to="/admin/listBlog"
         className={({ isActive }) =>
@@ -36,6 +50,7 @@ const Sidebar = () => {
         <p className="hidden md:inline-block">Blog Lists</p>
       </NavLink>
 
+      {/* Comments navigation link */}
       <NavLink
         to="/admin/comments"
         className={({ isActive }) =>
